@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="result"></div>
+	<form method="POST" action="/students">
+		
+		<input name="name" placeholder="name"></input>
+		<input name="role" placeholder="role"></input>
+		<input name="age" placeholder="age"></input>
+		<input name="power" placeholder="power"></input>		
+
+		<input type="submit" value="submit this studnet"></input>
+	</form>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).on('submit','form',function(event){
+		   event.preventDefault();
+
+		   var method = $('form').attr('method');
+
+		   var action = $('form').attr('action');
+
+		   var data = {
+		   	name: $("[name='name']").val(),
+		   	role: $("[name='role']").val(),
+		   	age: $("[name='age']").val(),
+		   	power: $("[name='power']").val()
+		   }
+
+		   $.ajax({
+		     type: method,
+		     url: action,
+		     data: data,
+		     success: function(jso){
+		       $("#result").text(JSON.stringify(jso));
+		     }
+		   });
+		});
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
